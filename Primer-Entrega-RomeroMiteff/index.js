@@ -24,35 +24,43 @@
 //   opt = prompt("1 a 4 o esc");
 // }
 
-// while (sorteo !== "ESC") {
-//   switch (sorteo) {
-//     case "ESC":
-//       console.log("Seguí participando");
-//       alert("Seguí participando");
-//     case "1":
-//       console.log("Excelente ¡ganaste!");
-//       alert("Excelente ¡ganaste!");
-//       break;
-//     case "2":
-//       console.log("Buena suerte la próxima");
-//       alert("Buena suerte la próxima");
-//       break;
-//     case "3":
-//       console.log("¡Te esperamos para que busques tu regalo!");
-//       alert("¡Te esperamos para que busques tu regalo!");
-//       break;
-//     default:
-//       console.log("Carga la opción correcta y proba suerte");
-//       alert("Carga la opción correcta y proba suerte");
-//   }
-//   sorteo = parseInt(prompt("Ingrese un número del 1 al 3 o ESC para terminar"));
-// }
+function saludo() {
+  return prompt("Ingrese nombre y apellido");
+}
 
-const nombre = "Federico";
-const apellido = "Romero Miteff";
+let nombre = saludo();
+alert("Bienvenido " + nombre);
 
-const saludo = nombre + " " + apellido + " " + apellido;
+let sorteo = prompt("Ingrese un numero del 1 al 3 o ESC para terminar");
 
-console.log(saludo);
+while (sorteo !== null && sorteo.toUpperCase() !== "ESC") {
+  switch (sorteo) {
+    case "1":
+      console.log(nombre + " Excelente ganaste 1 shampoo 🧴");
+      alert(nombre + " Excelente ganaste 1 shampoo 🧴");
+      break;
+    case "2":
+      console.log(nombre + " Buena suerte la próxima vez 😎");
+      alert(nombre + " Buena suerte la próxima vez 😎");
+      break;
+    case "3":
+      console.log(
+        nombre + " Iajuuu te esperamos para que busques tu pote de nutrición!🧴"
+      );
+      alert(
+        nombre + " Iajuuu te esperamos para que busques tu pote de nutrición!🧴"
+      );
+      break;
+    default:
+      console.log("Cargá la opción correcta y probá tu suerte 😜");
+      alert(nombre + " Cargá la opción correcta y probá tu suerte 😜");
+  }
 
-alert(saludo);
+  sorteo = prompt("Ingrese un numero del 1 al 3 o ESC para terminar");
+
+  console.log("ESC");
+  if (sorteo !== null && sorteo.toUpperCase() === "ESC") {
+    console.log("Te esperamos en otra oportunidad.");
+    alert("Te esperamos en otra oportunidad.");
+  }
+}
