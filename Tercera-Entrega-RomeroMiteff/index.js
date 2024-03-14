@@ -110,8 +110,8 @@ class divisa {
   }
 }
 
-const dolar = new divisa("dólares", 1085);
-const euro = new divisa("euros", 1172);
+const dolar = new divisa("dólares", 995);
+const euro = new divisa("euros", 1088);
 
 let historial = [];
 
