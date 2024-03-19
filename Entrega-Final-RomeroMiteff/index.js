@@ -243,8 +243,7 @@ botonResetear.addEventListener("click", () => {
 
 // const USD_JSON = 'usd.json'
 // const EUR_JSON = 'eur.json'
-// const REAL_JSON = 'brl.json'
-// const LIBRA_JSON = 'gbp.json'
+
 
 // const getChanges = async () => {
 
@@ -257,13 +256,6 @@ botonResetear.addEventListener("click", () => {
 //         const dataEur = await responseEur.json()
 //         euro.precio = dataEur.eur.ars.toFixed (2)
 
-//         const responseReal = await fetch (URL + REAL_JSON)
-//         const dataReal = await responseReal.json()
-//         real.precio = dataReal.brl.ars.toFixed (2)
-
-//         const responseLibra = await fetch (URL + LIBRA_JSON)
-//         const dataLibra = await responseLibra.json()
-//         libraEsterlina.precio = dataLibra.gbp.ars.toFixed (2)
 //     }
 
 //     catch (e){
