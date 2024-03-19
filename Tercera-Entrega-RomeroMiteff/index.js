@@ -1,11 +1,12 @@
 const constructor = document.querySelector("#constructor");
-constructor.style.backgroundColor = "#f4f1e9";
+constructor.style.backgroundColor = "#A07B71 ";
 const constructor1 = document.querySelector("#constructor1");
 const div1 = document.createElement("div");
 const h1 = document.createElement("h1");
 h1.id = "titulo1";
 h1.innerText = "Bienvenidos";
 h1.style.fontFamily = "'Pacifico'";
+h1.style.color = "#ffffff";
 h1.style.fontSize = "70px";
 h1.style.display = "flex";
 h1.style.justifyContent = "center";
@@ -17,6 +18,7 @@ constructor1.appendChild(div1);
 const h2 = document.createElement("h2");
 h2.id = "subtitulo";
 h2.innerText = "Simulador interactivo de cotización de divisas";
+h2.style.color = "#ffffff";
 h2.style.fontFamily = "'Pacifico'";
 h2.style.fontSize = "35px";
 h2.style.display = "flex";
@@ -90,7 +92,7 @@ inputValorEnPesos.type = "number";
 inputValorEnPesos.id = "valorenpesosid";
 inputValorEnPesos.style.fontFamily = "'Pacifico'";
 inputValorEnPesos.style.fontSize = "25px";
-inputValorEnPesos.style.backgroundColor = "#dbdbdb";
+inputValorEnPesos.style.backgroundColor = "#ffffff";
 inputValorEnPesos.style.border = "none";
 inputValorEnPesos.style.borderRadius = "10px";
 inputValorEnPesos.style.height = "50px";
@@ -110,8 +112,8 @@ class divisa {
   }
 }
 
-const dolar = new divisa("dólares", 995);
-const euro = new divisa("euros", 1088);
+const dolar = new divisa("dólares", 1035);
+const euro = new divisa("euros", 1116);
 
 let historial = [];
 
@@ -126,7 +128,7 @@ function conversiondivisa(pesosArgentinos, valordivisa, divisa) {
     divisa;
   span.style.fontFamily = "'Pacifico'";
   span.style.fontSize = "25px";
-  span.style.color = "#b46230";
+  span.style.color = "#ffffff";
   span.style.display = "flex";
   span.style.justifyContent = "center";
   constructor2.appendChild(span);
@@ -148,24 +150,26 @@ function conversiondivisa(pesosArgentinos, valordivisa, divisa) {
   const historialRecuperado = JSON.parse(localStorage.getItem("Conversion"));
 }
 
+const divBotones = document.createElement("div");
 const divBoton = document.createElement("div");
-divBoton.style.display = "flex";
-divBoton.style.justifyContent = "center";
+divBotones.style.display = "flex";
+divBotones.style.justifyContent = "center";
 const botonConvertir = document.createElement("input");
 botonConvertir.type = "button";
 botonConvertir.value = "Convertir";
 botonConvertir.id = "botonid";
-botonConvertir.style.backgroundColor = "#4b4b4b";
+botonConvertir.style.backgroundColor = "#ffffff";
 botonConvertir.style.width = "150px";
 botonConvertir.style.height = "40px";
 botonConvertir.style.border = "none";
 botonConvertir.style.borderRadius = "10px";
-botonConvertir.style.color = "#f4f1e9";
+botonConvertir.style.color = "#A07B71 ";
 botonConvertir.style.fontFamily = "'Pacifico'";
 botonConvertir.style.fontSize = "20px";
 botonConvertir.style.marginTop = "40px";
 
-constructor2.appendChild(divBoton);
+constructor2.appendChild(divBotones);
+divBotones.appendChild(divBoton);
 divBoton.appendChild(botonConvertir);
 
 botonConvertir.addEventListener("click", () => {
@@ -174,4 +178,60 @@ botonConvertir.addEventListener("click", () => {
   } else if (document.getElementById("euroid").checked) {
     conversiondivisa(inputValorEnPesos.value, euro.precio, euro.nombre);
   }
+});
+//Prueba SWEETALERT
+// const button = document.querySelector("#sweetalert");
+// button.addEventListener("click", () => {
+//   Swal.fire({
+//     title: "Sweet Alert is working",
+//     text: "",
+//     icon: "success",
+//   });
+// });
+
+Toastify({
+  text: "Cotizaciones del día Dólar $1035 Euro $1116",
+  duration: 10000,
+  className: "alert",
+  style: {
+    background: "#3b3131",
+  },
+}).showToast();
+
+const divBoton2 = document.createElement("div");
+const botonResetear = document.createElement("input");
+botonResetear.type = "button";
+botonResetear.value = "Resetear";
+botonResetear.id = "botonid";
+botonResetear.style.backgroundColor = "#ffffff";
+botonResetear.style.width = "150px";
+botonResetear.style.height = "40px";
+botonResetear.style.border = "none";
+botonResetear.style.borderRadius = "10px";
+botonResetear.style.color = "#A07B71";
+botonResetear.style.fontFamily = "'Pacifico'";
+botonResetear.style.fontSize = "20px";
+botonResetear.style.marginTop = "40px";
+
+divBotones.appendChild(divBoton2);
+divBoton2.appendChild(botonResetear);
+
+botonResetear.addEventListener("click", () => {
+  Swal.fire({
+    title: "Estas seguro que queres resetear las conversiones?",
+    showCancelButton: true,
+    confirmButtonText: "Resetear",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire("Reseteado!", "", "success");
+      localStorage.clear(historial);
+
+      const historialSpan = constructor2.querySelectorAll("span");
+      historialSpan.forEach((span) => {
+        span.remove();
+      });
+
+      inputValorEnPesos.value = "";
+    }
+  });
 });
