@@ -112,8 +112,32 @@ class divisa {
   }
 }
 
-const dolar = new divisa("dólares", 1035);
-const euro = new divisa("euros", 1116);
+const dolar = new divisa("dolares");
+const euro = new divisa("euros");
+
+const URL =
+  "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/";
+
+// "API-KEY": "5311109685-d0e7492961-sambh1"
+
+const USD_JSON = "usd.json";
+const EUR_JSON = "eur.json";
+
+const getChanges = async () => {
+  try {
+    const responseDolar = await fetch(URL + USD_JSON);
+    const dataDolar = await responseDolar.json();
+    dolar.precio = dataDolar.usd.ars.toFixed(2);
+
+    const responseEuro = await fetch(URL + EUR_JSON);
+    const dataEuro = await responseEuro.json();
+    euro.precio = dataEuro.eur.ars.toFixed(2);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+getChanges();
 
 let historial = [];
 
@@ -180,18 +204,8 @@ botonConvertir.addEventListener("click", () => {
   }
 });
 
-//Prueba SWEETALERT
-// const button = document.querySelector("#sweetalert");
-// button.addEventListener("click", () => {
-//   Swal.fire({
-//     title: "Sweet Alert is working",
-//     text: "",
-//     icon: "success",
-//   });
-// });
-
 Toastify({
-  text: "Cotizaciones del día Dólar $1035 Euro $1116",
+  text: "Cotizaciones del día Dólar $852 Euro $926",
   duration: 10000,
   className: "alert",
   style: {
@@ -219,7 +233,8 @@ divBoton2.appendChild(botonResetear);
 
 botonResetear.addEventListener("click", () => {
   Swal.fire({
-    title: "Estas seguro que queres resetear las conversiones?",
+    title:
+      "Esto eliminará permanentemente las conversiones, acción que no se puede deshacer",
     showCancelButton: true,
     confirmButtonText: "Resetear",
   }).then((result) => {
@@ -236,32 +251,3 @@ botonResetear.addEventListener("click", () => {
     }
   });
 });
-
-/// FETCH
-
-// const URL = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/'
-
-// const USD_JSON = 'usd.json'
-// const EUR_JSON = 'eur.json'
-
-
-// const getChanges = async () => {
-
-//     try {
-//         const responseDolar = await fetch (URL + USD_JSON)
-//         const dataDolar = await responseDolar.json()
-//         dolar.precio = dataDolar.usd.ars.toFixed (2)
-
-//         const responseEur = await fetch (URL + EUR_JSON)
-//         const dataEur = await responseEur.json()
-//         euro.precio = dataEur.eur.ars.toFixed (2)
-
-//     }
-
-//     catch (e){
-//         console.log (e)
-//     }
-// }
-
-
-// getChanges ()
